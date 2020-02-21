@@ -1,0 +1,28 @@
+
+    s = util.Queue()
+    ss=problem.getStartState()
+    s.push(((ss,"Stop",0),[]))
+    visited=[]
+    p=0
+    while (not s.isEmpty()):
+        state,actions=s.pop()
+        print(state)
+        #print(actions)
+        coordinates=state[0]
+        #print(coordinates)
+        visited.append(state)
+        
+        if problem.isGoalState(coordinates):
+            print actions
+            return actions
+
+        else:
+            next_states=problem.getSuccessors(coordinates)  
+            for i in range(len(next_states)):
+                if next_states[i] not in visited:
+                    s.push((next_states[i],actions+[next_states[i][1]]))
+                    #print((next_states[i],actions+[next_states[i][1]]))
+        #print("end iter")
+                
+    util.raiseNotDefined()
+
